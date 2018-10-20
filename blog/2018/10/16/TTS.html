@@ -21,16 +21,6 @@
   <meta property="og:url" content="https://mlwoo.github.io/blog/2018/10/16/TTS.html" /> 
   <meta property="og:site_name" content="你好呀，认识你很高兴" /> 
   <meta property="og:description" content="本文主要概述了在语音合成领域的一些文章，阐述了这些文章的解决的问题和方法，并整理了一些对这些文章的分析和看法。" /> 
-  <meta property="og:image" content="http://ww1.sinaimg.cn/large/e50cb7acgy1fvx8hhjfbfj21ji0vktfq.jpg" /> 
-  <meta property="og:image" content="http://ww1.sinaimg.cn/large/e50cb7acgy1fw00i2vkw1j21ek0mb0y7.jpg" /> 
-  <meta property="og:image" content="http://ww1.sinaimg.cn/large/e50cb7acgy1fw00i2wpqfj20wx120afp.jpg" /> 
-  <meta property="og:image" content="http://ww1.sinaimg.cn/large/e50cb7acgy1fw00i2wpqfj20wx120afp.jpg" /> 
-  <meta property="og:image" content="http://ww1.sinaimg.cn/large/e50cb7acgy1fw00i2vxvsj21bi0wl44x.jpg" /> 
-  <meta property="og:image" content="http://ww1.sinaimg.cn/large/e50cb7acgy1fw00kwzlxsj20ly0ao76w.jpg" /> 
-  <meta property="og:image" content="http://ww1.sinaimg.cn/large/e50cb7acgy1fw00kwrgqej20ly07edg7.jpg" /> 
-  <meta property="og:image" content="http://ww1.sinaimg.cn/large/e50cb7acgy1fw00kwtyasj20md0caq4e.jpg" /> 
-  <meta property="og:image" content="http://ww1.sinaimg.cn/large/e50cb7acgy1fw00kwxqd2j20t3075tae.jpg" /> 
-  <meta property="og:image" content="http://ww1.sinaimg.cn/large/e50cb7acgy1fw00kwsvggj20q5082my5.jpg" /> 
   <meta property="og:updated_time" content="2018-10-07T15:33:41.911Z" /> 
   <meta name="twitter:card" content="summary" /> 
   <meta name="twitter:title" content="TTS综述" /> 
@@ -126,8 +116,7 @@
            <div class="post-meta"> 
             <span class="post-time"> <span class="post-meta-item-icon"> <i class="fa fa-calendar-o"></i> </span> <span class="post-meta-item-text">发表于</span> <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-10-16T11:20:36+08:00"> 2018-10-16 </time> </span> 
             <span class="post-category"> <span class="post-meta-divider">|</span> <span class="post-meta-item-icon"> <i class="fa fa-folder-o"></i> </span> <span class="post-meta-item-text">分类于</span> <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"> <a href="/categories/algorithm/" itemprop="url" rel="index"> <span itemprop="name">algorithm</span> </a> </span> </span> 
-            <span class="post-meta-divider">|</span> 
-            <span class="page-pv"> <i class="fa fa-file-o"></i> <span class="busuanzi-value" id="busuanzi_value_page_pv"></span> </span> 
+			<span class="post-pv"> <span class="post-meta-divider">|</span> <span class="post-meta-item-icon"> <i class="fa fa-file-o"></i> </span> <span class="busuanzi-value" id="busuanzi_value_page_pv"></span></span>    
             <div class="post-description">
               本文主要概述了在语音合成领域的一些文章，阐述了这些文章的解决的问题和方法，并整理了一些对这些文章的分析和看法。 
             </div> 
@@ -135,18 +124,18 @@
           </header> 
           <div class="post-body" itemprop="articleBody"> 
            <p>【转载请注明出处】<a href="http://mlwoo.github.io/">mlwoo.github.io</a></p> 
-		   <h3 id="1">TTS综述</h3>
-		   <h4 id="1">什么是TTS</h4>
+		   <P>【利益相关】TTS上的有关成果不归本人所有。对于某些细节，本文可能略去。</p>
+		   <h3 id="1">什么是TTS</h3>
 		   <p> TTS旨在搭建一个将正则化的自然语言的文本转化成语音的系统。文本正则化通常包括分词（英文不存在这个问题），特殊字符的处理（比如阿拉伯数字的解释可以是数词也可以是电话号码）等问题。一个理想的TTS系统至少在intelligence和naturalness达到优秀的要求。前者能保证听众能轻松而准确获取想要表达的信息，后者使得生成的语音听起来确实像人类发出的声音。根据目前我获得的反馈来说，实际上第二个要求非常有意思：有的人认为TTS生成的一长段语音似乎过于顺畅，倒不是像人类在正常对话中应该有的表现。</p>
-		   <h4 id="2">TTS应用场景</h4>
-		   <p> TTS应用场景非常广泛，不再赘述。不过TTS的解决方案，DL类的解决方案实际上对场景非常依赖。</p>
-		   <h4 id="3">解决方案</h4>
+		   <h3 id="2">TTS应用场景</h3>
+		   <p> TTS应用场景非常广泛，不再赘述。不过TTS的DL类解决方案对场景非常依赖。</p>
+		   <h3 id="3">解决方案</h3>
 		   <p> 目前主流的TTS的DL解决方案基本上不是端到端的解决方案，其pipeline可以划分成两步：<br />
            前端：文本转换成phonetic特征 <br />
 		   后端：phonetic特征转换成waveform <br />
-		   尽管最新的百度的TTS的解决方案Clarinet宣称是端到端的解决方案，在模型设计上也没能摆脱pipeline分步走的范式，我个人认为它和它的前辈们并没有本质上的区别。至于现在TTS的解决方案至今仍是两步走的pipeline的原因稍后将详细阐述。
+		   尽管最新的百度的TTS的解决方案Clarinet宣称是端到端的解决方案，在模型设计上也没能摆脱pipeline分步走的范式，我个人认为它和它的前辈们并没有本质上的区别。至今仍是两步走的pipeline的原因稍后将详细阐述。
 </p>
-		   <h4 id="4">主要问题</h4>
+		   <h3 id="4">主要问题</h3>
 		   <p> TTS的DL解决方案面临几个重要的问题：<br />
 		   <ol>
 		   <li>数据集<br />在DL时代，数据为王，重要性不言而喻。TTS数据集的制作比它的姊妹问题ASR要求要更加苛刻。<br />
@@ -163,7 +152,7 @@
 		   <li>跨模型时无法建立很好的baseline<br />在复现各种模型时，我们希望通过建立客观的baseline进行结果比较，但是TTS的最终的输出结果是一个非常主观的结果。<br />
 		   <ul>
 		   <li>缺乏公共的数据集（中文，英文可以使用LJSpeech）</li>
-		   <li>客观评分不够主观，在不同的模型上即使使用相同的数据集和统一的损失函数，loss低的模型生成的效果不一定比loss高的效果要好。举一个极端的例子，在测试时，A模型启动稍慢（状态初始化到状态进入能够working的状态）的预测的结果总是比target延迟若干个sample point的loss就会很大（几乎处处不相等），但是它实际上波形与target是一样的，只不过是延迟了几个sample point，这是人根本无法分辨出来的。</li>
+		   <li>客观评分不够主观，在不同的模型上即使使用相同的数据集和统一的损失函数，loss低的模型生成的效果不一定比loss高的效果要好。<br />举一个极端的例子，在测试时，A模型启动稍慢（状态初始化到状态进入能够working的状态）的预测的结果总是比target延迟若干个sample point的loss就会很大（几乎处处不相等），但是它实际上波形与target是一样的，只不过是延迟了几个sample point，这是人根本无法分辨出来的。</li>
 		   <li>主观的评分总是主观的</li>
 		   </ul>
 		   </li>
@@ -180,17 +169,110 @@
 		   </li>
 		   </ol>
 		   实际上在工业生产中，还会存在更多要求，实时性要求，吞吐量要求，资源占用率，成本考虑等等。</p>
+		   <h3 id="5">相关工作</h3>
+		   <p> 在TTS领域，值得关注的论文主要是来自一些有影响力的比赛如Blizzard Challenge和interspeech，一些产业巨头如Google、百度和科大讯飞以及一些科研院所如Edinburgh大学和中国科研院。
+		   国内也有一部分创新企业在这方面取得的成果也不错，如我了解的云之声和英语流利说都在积极推动TTS产业落地。当然经过追赶，相信未来我们组也会取得一些成果。下面是他们的一些最新的结果。（我并未一一拜读）<br />
+			<ul>
+			<li>CAS(中国科学院)
+			<ul>
+			<li>
+			Generating Spectral Parameters with Neural Attention: seq2seq with attention and HMM aligner <br />
+			相对于传统的TTS的前端的建模是分成多个步骤的pipeline，尽管使用了HMM这种传统的序列建模的方法，但该文是第一次在这个领域上进行了端到端的尝试。
+			</li>
+			</ul>
+			
+			</li>
+			<li> Mila
+			<ul>
+			CHAR2WAV: END-TO-END SPEECH SYNTHESIS
+			</ul>
+			</li>
+			
+			<li> Baidu
+			<ul>
+			<li>Deep voice 1: Real-time Neural Text-to-Speech <br />
+			这篇文章首次将前端中的所有模型换成NN模型进行了尝试
+			</li>
+			<li>Deep voice 2: Multi-Speaker Neural Text-to-Speech</li>
+            <li>Deep voice 3: Scaling Text-to-Speech with Convolutional Sequence Learning</li>
+			<li>Clarinet: Parallel Wave Generation in End-to-End Text-to-Speech</li>
+			</ul>
+			</li>
+			<li> Google
+			<ul>
+			<li>Tacotron 1: Towards End-to-End Speech Synthesis</li>
+			<li>Tacotron 2: Natural TTS Synthesis by Conditioning WaveNet on Mel Spectrogram Predictions</li>
+            <li>autoregressive wavenet: A Generative Model for Raw Audio</li>
+			<li>parallel wavenet: Fast High-Fidelity Speech Synthesis</li>
+			<li>wavernn: Efficient Neural Audio Synthesis</li>
+			</ul>
+			</li>
+			
+			<li>
+			Zeyu Jin, Adam Finkelstein
+			<ul>
+			FFTNet: a Real-Time Speaker-Dependent Neural Vocoder
+			</ul>
+			</li>	
+			</ul>
+			这里我们重点解读Deep Voice 3，clarinet，Tacotron 2， autoregressive wavenet， parallel wavenet， wavernn以及fftnet。
+			其中autogressive wavenet， parallel wavenet， wavernn，fftnet以及clarinet中重点介绍了TTS后端声码器部分模型的搭建；而
+			Deep Voice 3和Tacotron 2重点介绍了TTS前端部分的模型的搭建。<br />
+			无论声码器模型还是前端模型本质上是序列模型，典型的序列模型现在主流做法有两类：一类是循环模型，以RNN/LSTM为代表，一类是前馈模型，以wavenet/transformer为代表。
+			通常认为前馈模型训练更稳定，速度更快，而循环模型表达能力更强。然而在很多场景上用不上循环模型的更强的表达能力，这就十分尴尬了。
+			</p>
+			<h3 id="6">声码器之autoregressive wavenet</h3>
+			TTS的输出结果是一个主观结果，因此当你有一个非常良好的后端模型（声码器），你才有可能去评价一个前端模型结果的好坏。声码器处理的是frame-level的声音特征，即mel-spectrum。
+			它是将一个声音片段进行短时傅里叶变换得到频域信息再做了一个非线性变换得到的结果。频域信息较时域信息得到特征会更加健壮，这也是前文阐述的一些堆在一起的sample point是不存在太大价值的原因。
+			因为人耳并不是对所有频率上的信息具有等同的敏感性，因此更符合人耳频域选择的非线性的变换在TTS上是一个不错的选择。
+			建议TTS萌新们和一些在TTS上得到效果不尽人意的司机们一定要多留心Tacotron2模型关于mel-spectrum的介绍，因为mel-spectrum等数据预处理对最后的输出结果太重要了。
+			<h4 id="61"> 基本结构 </h4>
+			<p>
+			autoregressive wavenet就是序列模型建模中前馈模型的代表作。序列模型假定当前的观察到的变量是依赖于之前的变量而和之后的变量无关。假定有一组序列$\{x_0, x_1,...,x_T\}$，
+			根据序列模型的假设，观察到这组变量的概率为：$$ p(\mathbf{x}) = \prod_{t=1}^{T}p(x_t|x_0,..., x_{t-1}) $$这是一个完全阶的HMM模型。
+			通常在训练和推理过程中，序列模型必须完成之前时间点的变量结果之后才可以进行当前时间点变量的计算。这种依赖关系导致模型的计算是串行的，使得计算变得十分低效。以RNN的循环模型为例，
+			尽管在训练过程中所有时刻的可观察变量都是已知的，但是cell的hidden state却是依赖于前一个cell的hidden state，因此它的计算在时间方向上仍是串行的。<br />
+			wavenet引入了一种特殊的卷积层来表征这种依赖关系，同时摒弃了显式的hidden state，使得在训练过程中计算得以并行，这种卷积层被称之为causal layer。
+			如图所示<img src="images/causal_conv_layer.png" alt="hi" class="inline"/>
+			在这个网络中，每一时刻的输出都会作为下一个时刻的输入，而不是RNN中hidden state 作为下个cell的一个输入，这同样表征了序列上的依赖关系，也是一种自回归模型。在推理过程中，wavenet只能串行计算。
+			但在训练过程中所有时间点的可观察变量都是可知的，即网络底部的输入都是已知的，因此在训练时计算可以并行。
+			以图中最右端的实线部分为例，假定最后一层的橙色输出的时刻为$t+1$, 与之关联的蓝色输入的时刻有五个可观察变量为$x_{t-4},x_{t-3},x_{t-2},x_{t-1},x_t$,这是一个五阶的HMM模型，整个模型的概率粗略表示为：
+			$$ p(\mathbf{x}) = \prod_{t=1}^{T}p(x_t|x_{t-5},..., x_{t-1}) $$这里并没有准确表示前四个观察变量的公式。随着层数的增加，其HMM的阶数将不断增高，直至可以表达完全阶的HMM模型。<br />
+			每个输出点的感受域（即依赖的输出点的个数）可由卷积核的大小与层数的和减去1来表示。以16KHz采样率的音频为例，若表示一个采样点与之前20ms的采样点存在依赖关系，那么感受域为320。若卷积核大小为2，
+			则需要319层卷积层。那么至少需要经过319层的卷积层才能得到一个采样点的输出，这个计算量是十分惊人的，因此只使用causal layer显然是不现实的。<br />
+			文章引入了Dilated Conv使得感受域大小随着卷积层的增加指数级的增大，如果所示<img src="images/dilated_causal_conv_layer.png" alt="hi" class="inline"/>
+			很显然Dilated Conv能有效地增大感受域，但是这是一种近似，会损失部分信息。因此是按照感受域{2, 4, 8, ..., 512}, .., {2, 4, 8, ..., 512}的感受域重复使用Dilated conv结构的，形成stack。<br />
+			作为声波的生成式模型的wavenet借鉴了图像生成式模型PixelRNN、pixelCNN和pixelCNN++中一个很重要的结构，有趣的是这个结构却是循环模型LSTM中记忆门。
+			其数学公式为$$ \mathbf{y} = tanh(W_{k,f}*X) \odot \sigma(W_{k,g}*X) $$
+			个人认为这是一种内部attention机制，通过这种内部作用萃取更为有效的信息。<br />
+			这样就有了整个autoregressive wavenet的基本结构，如图所示<img src="images/architecher.png" alt="hi" class="inline"/>
+			图中residual connection已经是DL网络结构中的基本操作了。而将每个stack的输出的结果跨stack进行相加可以看成是各个stack感受域上进行ensemble，这和SSD也没有实质上的区别。<br />
+			到目前为止，不少同学会说这个模型的输入输出就是声波的采样点是自己跟自己跟自己玩，这可能会提高声波的内部质量，但是没有解释wavenet是如何将mel-spectrum转换成声音的。
+			wavenet可以在attention机制的记忆门传递两种信息，一种是随着时间而变化的局部信息，如mel-spectrum。另一种是具有时间不变性的全局信息，如说话者id信息。
+			见公式：$$ \mathbf{y} = tanh(W_{k,f}*X + V_{k,f}^{T}g) \odot \sigma(W_{k,g}*X + V_{k,g}^{T}g) $$
+			$$ \mathbf{y} = tanh(W_{k,f}*X + V_{k,f}*l) \odot \sigma(W_{k,g}*X + V_{k,g}*l) $$ 
+			其中变量g表示全局信息，变量l表示局部信息。h、l必须和x保持具有相同的时间长度才能使得计算自洽。而frame-level的mel-spectrum时间方向上的长度少于time-level的采样点信息，
+			所以通常做法是对mel-spectrum做transpose conv的上采样操作或者是repete成多份（这是一种近似）使得时间方向上的自洽。而全局信息不随时间改变，各个时间点上使用同一个信息即可。<br />
+			最后输出的声波的建模使用mixture of logistics（MoL），这也是借鉴了图像生成式模型的建模模型。至于选择MoL建模的假设是一种选择，这也是后来Clarinet在wavenet上改进的一个重要方向，后面再详细介绍。
+			</p>
+			<h4 id="62"> 模型特点 </h4>
+			<ol>
+			<li> 贡献 
+			<ul>
+			<li> 生成的语音非常自然</li>
+			<li> 可以以speaker的id信息建模，单模型可以生成多个说话者风格的声音</li>
+			<li> 训练过程计算得以并行，训练效率很高</li>
+			<li> 在较小的数据集上也可以获得不错的结果</li>
+			<li> 是序列模型中前馈模型的代表作</li>
+			</ul>
+			</li>
+			<li> 不足
+			<ul>
+			<li> 推理过程计算串行，这给TTS产业部署带来极大的困难</li>
+			</ul>
+			</li>
+			</ol>
           </div> 
-          <footer class="post-footer"> 
-           <div class="post-nav"> 
-            <div class="post-nav-next post-nav-item"> 
-             <a href="/blog/2018/04/05/mobilenetv1v2.html" rel="next" title="浅析两代MobileNet"> <i class="fa fa-chevron-left"></i> 浅析两代MobileNet </a> 
-            </div> 
-            <span class="post-nav-divider"></span> 
-            <div class="post-nav-prev post-nav-item"> 
-            </div> 
-           </div> 
-          </footer> 
          </div> 
         </article> 
         <div class="post-spread"> 
@@ -236,25 +318,12 @@
         <div class="post-toc"> 
          <div class="post-toc-content"> 
           <ol class="nav"> 
-           <li class="nav-item nav-level-3"><a class="nav-link" href="#1"><span class="nav-number">1.</span> <span class="nav-text">BinnaryConnect</span></a></li> 
-           <li class="nav-item nav-level-3"><a class="nav-link" href="#2"><span class="nav-number">2.</span> <span class="nav-text">BNN</span></a></li> 
-           <li class="nav-item nav-level-3"><a class="nav-link" href="#3"><span class="nav-number">3.</span> <span class="nav-text">XNOR-Net</span></a></li> 
-           <li class="nav-item nav-level-3"><a class="nav-link" href="#4"><span class="nav-number">4.</span> <span class="nav-text">TWN</span></a></li> 
-           <li class="nav-item nav-level-3"><a class="nav-link" href="#5"><span class="nav-number">5.</span> <span class="nav-text">BWNH</span></a></li> 
-           <li class="nav-item nav-level-3"><a class="nav-link" href="#6"><span class="nav-number">6.</span> <span class="nav-text">FFN</span></a></li> 
-           <li class="nav-item nav-level-3"><a class="nav-link" href="#7"><span class="nav-number">7.</span> <span class="nav-text">INQ</span></a></li> 
-           <li class="nav-item nav-level-3"><a class="nav-link" href="#8"><span class="nav-number">8.</span> <span class="nav-text">SQ-B(T)WN</span></a></li> 
-           <li class="nav-item nav-level-3"><a class="nav-link" href="#9"><span class="nav-number">9.</span> <span class="nav-text">Deep Compression</span></a></li> 
-           <li class="nav-item nav-level-3"><a class="nav-link" href="#10"><span class="nav-number">10.</span> <span class="nav-text">TTQ</span></a></li> 
-           <li class="nav-item nav-level-3"><a class="nav-link" href="#11"><span class="nav-number">11.</span> <span class="nav-text">DoReFa-Net</span></a></li> 
-           <li class="nav-item nav-level-3"><a class="nav-link" href="#12"><span class="nav-number">12.</span> <span class="nav-text">ABC-Net</span></a></li> 
-           <li class="nav-item nav-level-3"><a class="nav-link" href="#13"><span class="nav-number">13.</span> <span class="nav-text">HWGQ</span></a></li> 
-           <li class="nav-item nav-level-3"><a class="nav-link" href="#14"><span class="nav-number">14.</span> <span class="nav-text">Network Sketching</span></a></li> 
-           <li class="nav-item nav-level-3"><a class="nav-link" href="#15"><span class="nav-number">15.</span> <span class="nav-text">PQ+TS+Guided</span></a></li> 
-           <li class="nav-item nav-level-3"><a class="nav-link" href="#16"><span class="nav-number">16.</span> <span class="nav-text">SYQ</span></a></li> 
-           <li class="nav-item nav-level-3"><a class="nav-link" href="#17"><span class="nav-number">17.</span> <span class="nav-text">TSQ</span></a></li> 
-           <li class="nav-item nav-level-3"><a class="nav-link" href="#18"><span class="nav-number">18.</span> <span class="nav-text">LQ-Net</span></a></li> 
-           <li class="nav-item nav-level-3"><a class="nav-link" href="#19"><span class="nav-number">19.</span> <span class="nav-text">小结</span></a></li> 
+           <li class="nav-item nav-level-3"><a class="nav-link" href="#1"><span class="nav-number">1.</span> <span class="nav-text">什么是TTS</span></a></li> 
+           <li class="nav-item nav-level-3"><a class="nav-link" href="#2"><span class="nav-number">2.</span> <span class="nav-text">TTS应用场景</span></a></li> 
+           <li class="nav-item nav-level-3"><a class="nav-link" href="#3"><span class="nav-number">3.</span> <span class="nav-text">解决方案</span></a></li> 
+           <li class="nav-item nav-level-3"><a class="nav-link" href="#4"><span class="nav-number">4.</span> <span class="nav-text">主要问题</span></a></li> 
+           <li class="nav-item nav-level-3"><a class="nav-link" href="#5"><span class="nav-number">5.</span> <span class="nav-text">相关工作</span></a></li> 
+		   <li class="nav-item nav-level-3"><a class="nav-link" href="#6"><span class="nav-number">6.</span> <span class="nav-text">声码器之autoregressive wavenet</span></a></li> 
           </ol> 
          </div> 
         </div> 
@@ -283,8 +352,8 @@
      </div> 
      <div class="busuanzi-count"> 
       <script async="" src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script> 
-      <span class="site-uv"> <i class="fa fa-user"></i> <span class="busuanzi-value" id="busuanzi_value_site_uv"></span> </span> 
-      <span class="site-pv"> <i class="fa fa-eye"></i> <span class="busuanzi-value" id="busuanzi_value_site_pv"></span> </span> 
+      <span class="site-uv"> <i class="fa fa-user"></i> <span class="page-meta-divider">|</span> <span class="busuanzi-value" id="busuanzi_value_site_uv"></span> </span> 
+      <span class="site-pv"> <i class="fa fa-eye"></i> <span class="page-meta-divider">|</span><span class="busuanzi-value" id="busuanzi_value_site_pv"></span> </span> 
      </div> 
     </div> 
    </footer> 
