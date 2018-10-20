@@ -135,27 +135,39 @@
           </header> 
           <div class="post-body" itemprop="articleBody"> 
            <p>【转载请注明出处】<a href="http://mlwoo.github.io/">mlwoo.github.io</a></p> 
-           <p>[5] <a href="https://arxiv.org/pdf/1802.02733.pdf" target="_blank" rel="external">From Hashing to CNNs: Training Binary Weight Networks via Hashing</a></p> 
-           <p>[6] <a href="https://arxiv.org/pdf/1708.01001.pdf" target="_blank" rel="external">Learning Accurate Low-Bit Deep Neural Networks with Stochastic Quantization</a></p> 
-           <p>[7] <a href="https://arxiv.org/pdf/1510.00149.pdf" target="_blank" rel="external">DEEP COMPRESSION: COMPRESSING DEEP NEURAL NETWORKS WITH PRUNING, TRAINED QUANTIZATION AND HUFFMAN CODING</a></p> 
-           <p>[8] <a href="https://arxiv.org/pdf/1612.01064.pdf" target="_blank" rel="external">TRAINED TERNARY QUANTIZATION</a></p> 
-           <p>[9] <a href="https://arxiv.org/pdf/1606.06160.pdf" target="_blank" rel="external">DOREFA-NET: TRAINING LOW BITWIDTH CONVOLUTIONAL NEURAL NETWORKS WITH LOW BITWIDTH GRADIENTS</a></p> 
-           <p>[10] <a href="https://arxiv.org/pdf/1802.04680.pdf" target="_blank" rel="external">TRAINING AND INFERENCE WITH INTEGERS IN DEEP NEURAL NETWORKS</a></p> 
-           <p>[11] <a href="https://arxiv.org/pdf/1702.00953.pdf" target="_blank" rel="external">Deep Learning with Low Precision by Half-wave Gaussian Quantization</a></p> 
-           <p>[12] <a href="http://openaccess.thecvf.com/content_cvpr_2018/papers/Wang_Two-Step_Quantization_for_CVPR_2018_paper.pdf" target="_blank" rel="external">Two-Step Quantization for Low-bit Neural Networks</a></p> 
-           <p>[13] <a href="https://arxiv.org/pdf/1807.10029.pdf" target="_blank" rel="external">LQ-Nets: Learned Quantization for Highly Accurate and Compact Deep Neural Networks</a></p> 
-           <p>[14] <a href="https://papers.nips.cc/paper/4824-imagenet-classification-with-deep-convolutional-neural-networks.pdf" target="_blank" rel="external">ImageNet Classification with Deep Convolutional Neural Networks</a></p> 
-           <p>[15] <a href="https://arxiv.org/pdf/1603.05279.pdf" target="_blank" rel="external">XNOR-Net: ImageNet Classification Using Binary Convolutional Neural Networks</a></p> 
-           <p>[16] <a href="https://arxiv.org/pdf/1611.01972.pdf" target="_blank" rel="external">Fixed-point Factorized Networks</a></p> 
-           <p>[17] <a href="https://arxiv.org/pdf/1702.03044.pdf" target="_blank" rel="external">INCREMENTAL NETWORK QUANTIZATION: TOWARDS LOSSLESS CNNS WITH LOW-PRECISION WEIGHTS</a></p> 
-           <p>[18] <a href="https://arxiv.org/pdf/1606.06160.pdf" target="_blank" rel="external">DOREFA-NET: TRAINING LOW BITWIDTH CONVOLUTIONAL NEURAL NETWORKS WITH LOW BITWIDTH GRADIENTS</a></p> 
-           <p>[19] <a href="https://arxiv.org/pdf/1706.02021.pdf" target="_blank" rel="external">Network Sketching: Exploiting Binary Structure in Deep CNNs</a></p> 
-           <p>[20] <a href="https://arxiv.org/pdf/1711.00205.pdf" target="_blank" rel="external">Towards Effective Low-bitwidth Convolutional Neural Networks</a></p> 
-           <p>[21] <a href="https://arxiv.org/pdf/1807.00301.pdf" target="_blank" rel="external">SYQ: Learning Symmetric Quantization For Efficient Deep Neural Networks</a></p> 
-           <p>[22] <a href="https://arxiv.org/pdf/1409.1556.pdf" target="_blank" rel="external">Very deep convolutional networks for large-scale image recognition</a></p> 
-           <p>[23] <a href="https://arxiv.org/pdf/1711.11294.pdf" target="_blank" rel="external">Towards Accurate Binary Convolutional Neural Network</a></p> 
-           <p>[24] <a href="https://arxiv.org/pdf/1512.03385.pdf" target="_blank" rel="external">Deep residual learning for image recognition</a></p> 
-           <p>[25] <a href="https://arxiv.org/pdf/1308.3432.pdf" target="_blank" rel="external">Estimating or Propagating Gradients Through Stochastic Neurons for Conditional Computation</a></p> 
+		   <h3 id="1">TTS综述</h3>
+		   <h4 id="1">什么是TTS</h4>
+		   <p> TTS旨在搭建一个将正则化的自然语言的文本转化成语音的系统。文本正则化通常包括分词（英文不存在这个问题），特殊字符的处理（比如阿拉伯数字的解释可以是数词也可以是电话号码）等问题。一个理想的TTS系统至少在intelligence和naturalness达到优秀的要求。前者能保证听众能轻松而准确获取想要表达的信息，后者使得生成的语音听起来确实像人类发出的声音。根据目前我获得的反馈来说，实际上第二个要求非常有意思：有的人认为TTS生成的一长段语音似乎过于顺畅，倒不是像人类在正常对话中应该有的表现。</p>
+		   <h4 id="2">TTS应用场景</h4>
+		   <p> TTS应用场景非常广泛，不再赘述。不过TTS的解决方案，DL类的解决方案实际上对场景非常依赖。</p>
+		   <h4 id="3">解决方案</h4>
+		   <p> 目前主流的TTS的DL解决方案基本上不是端到端的解决方案，其pipeline可以划分成两步：</p>
+           <p>前端：文本转换成phonetic特征 </p>
+		   <p>后端：phonetic特征转换成waveform </p>
+		   <p>尽管最新的百度的TTS的解决方案Clarinet宣称是端到端的解决方案，在模型设计上也没能摆脱pipeline分步走的范式，我个人认为它和它的前辈们并没有本质上的区别。至于现在TTS的解决方案至今仍是两步走的pipeline的原因稍后将详细阐述。
+</p>
+		   <h4 id="4">主要问题</h4>
+		   <p> TTS的DL解决方案面临几个重要的问题：
+1.	数据集
+在DL时代，数据为王，重要性不言而喻。TTS数据集的制作比它的姊妹问题ASR要求要更加苛刻。
+1)	无噪声，此处噪声的并非单指只录制过程中的环境噪声
+2)	专业的播音员，播音员除了字正腔圆之外，不得误读，还必须在播音过程中控制呼吸声、多余的齿音等等，否则就会引入噪声。
+3)	专业的录制环境和录制设备
+4)	数据清洗，即使严格控制上述的生产过程，还是会有些无效的数据需要剔除
+5)	文本标注
+6)	音频本身和文本标注需要内部高度的一致性
+2.	跨模型时无法建立很好的baseline
+1)	缺乏公共的数据集（中文，英文可以使用LJSpeech）
+2)	客观评分不够主观，在不同的模型上即使使用相同的数据集和统一的损失函数，loss低的模型生成的效果不一定比loss高的效果要好。举一个极端的例子，在测试时，A模型启动稍慢（状态初始化到状态进入能够working的状态）的预测的结果总是比target延迟若干个sample point的loss就会很大（几乎处处不相等），但是它实际上波形与target是一样的，只不过是延迟了几个sample point，这是人根本无法分辨出来的。
+3)	主观的评分总是主观的
+3.	极高的计算要求
+以16K采样率的音频为例，如果做到1X的实时速度，这意味着需要在1s完成16K个sample point的计算，平均一个点的模型计算花费时间0.0625ms。而往往1X的实时速度明显是不够用的。
+4.	非端到端的模型
+1)	从文本到语音是seq2seq模型如果做成完整的端到端模型，以15个字符与1s的音频对应的attention的计算都是非常恐怖的计算量。无论是训练还是推理速度都够让每个人抓狂。
+2)	文本的发音和frame-level的语音信息更相关，而不是一堆采样点的信息的堆积。
+因此在主流的解决方案都是首先将文本和frame-level的信息关联构建一个模型（前端），再将frame-level信息与time-level上声波进行关联构建一个模型（后端）。
+实际上在工业生产中，还会存在更多要求，实时性要求，吞吐量要求，资源占用率，成本考虑等等。
+</p>
           </div> 
           <footer class="post-footer"> 
            <div class="post-nav"> 
