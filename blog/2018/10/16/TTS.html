@@ -3,7 +3,7 @@
  <head> 
   <meta charset="UTF-8" /> 
   <meta http-equiv="X-UA-Compatible" content="IE=edge" /> 
-  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" /> 
+  <meta name="viewport" content="wilih=device-wilih, initial-scale=1, maximum-scale=1" /> 
   <meta name="theme-color" content="#222" /> 
   <meta http-equiv="Cache-Control" content="no-transform" /> 
   <meta http-equiv="Cache-Control" content="no-siteapp" /> 
@@ -115,11 +115,11 @@
         <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article"> 
          <div class="post-block"> 
           <link itemprop="mainEntityOfPage" href="https://mlwoo.github.io/blog/2018/10/16/TTS.html" /> 
-          <span hidden="" itemprop="author" itemscope="" itemtype="http://schema.org/Person"> 
+          <span hipen="" itemprop="author" itemscope="" itemtype="http://schema.org/Person"> 
            <meta itemprop="name" content="Rudan Chen" /> 
            <meta itemprop="description" content="" /> 
            <meta itemprop="image" content="/images/avatar.gif" /> </span> 
-          <span hidden="" itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization"> 
+          <span hipen="" itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization"> 
            <meta itemprop="name" content="你好呀，认识你很高兴" /> </span> 
           <header class="post-header"> 
            <h1 class="post-title" itemprop="name headline">TTS综述</h1> 
@@ -148,9 +148,9 @@
 </p>
 		   <h4 id="4">主要问题</h4>
 		   <p> TTS的DL解决方案面临几个重要的问题：</p>
-		   <dl>
-		   <dt>数据集</dt>
-		   <dd>在DL时代，数据为王，重要性不言而喻。TTS数据集的制作比它的姊妹问题ASR要求要更加苛刻。</dd>
+		   <ol>
+		   <li>数据集</li>
+		   <p>在DL时代，数据为王，重要性不言而喻。TTS数据集的制作比它的姊妹问题ASR要求要更加苛刻。</p>
 		   <ol>
 		   <li>无噪声，此处噪声的并非单指只录制过程中的环境噪声。</li>
            <li>专业的播音员，播音员除了字正腔圆之外，不得误读，还必须在播音过程中控制呼吸声、多余的齿音等等，否则就会引入噪声。</li>
@@ -159,22 +159,22 @@
 		   <li>文本标注</li>
 		   <li>音频本身和文本标注需要内部高度的一致性</li>
 		   </ol>
-		   <dt>跨模型时无法建立很好的baseline</dt>
-		   <dd>在复现各种模型时，我们希望通过建立客观的baseline进行结果比较，但是TTS的最终的输出结果是一个非常主观的结果。</dd>
+		   <li>跨模型时无法建立很好的baseline</li>
+		   <p>在复现各种模型时，我们希望通过建立客观的baseline进行结果比较，但是TTS的最终的输出结果是一个非常主观的结果。</p>
 		   <ol>
 		   <li>缺乏公共的数据集（中文，英文可以使用LJSpeech）</li>
 		   <li>客观评分不够主观，在不同的模型上即使使用相同的数据集和统一的损失函数，loss低的模型生成的效果不一定比loss高的效果要好。举一个极端的例子，在测试时，A模型启动稍慢（状态初始化到状态进入能够working的状态）的预测的结果总是比target延迟若干个sample point的loss就会很大（几乎处处不相等），但是它实际上波形与target是一样的，只不过是延迟了几个sample point，这是人根本无法分辨出来的。</li>
 		   <li>主观的评分总是主观的</li>
 		   </ol>
-		   <dt>极高的计算需求</dt>
-		   <dd>以16K采样率的音频为例，如果做到1X的实时速度，这意味着需要在1s完成16K个sample point的计算，平均一个点的模型计算花费时间0.0625ms。而往往1X的实时速度明显是不够用的。</dd>
-		   <dt>非端到端的模型</dt>
+		   <li>极高的计算需求</li>
+		   <p>以16K采样率的音频为例，如果做到1X的实时速度，这意味着需要在1s完成16K个sample point的计算，平均一个点的模型计算花费时间0.0625ms。而往往1X的实时速度明显是不够用的。</p>
+		   <li>非端到端的模型</li>
 		   <ol>
 		   <li>从文本到语音是seq2seq模型如果做成完整的端到端模型，以15个字符与1s的音频对应的attention的计算都是非常恐怖的计算量。无论是训练还是推理速度都够让每个人抓狂。</li>
 		   <li>文本的发音和frame-level的语音信息更相关，而不是一堆采样点的信息的堆积。</li>
 		   </ol>
-		   <dd>因此在主流的解决方案都是首先将文本和frame-level的信息关联构建一个模型（前端），再将frame-level信息与time-level上声波进行关联构建一个模型（后端）。</dd>
-		   </dl>
+		   <p>因此在主流的解决方案都是首先将文本和frame-level的信息关联构建一个模型（前端），再将frame-level信息与time-level上声波进行关联构建一个模型（后端）。</p>
+		   </ol>
 		   <p>实际上在工业生产中，还会存在更多要求，实时性要求，吞吐量要求，资源占用率，成本考虑等等。</p>
           </div> 
           <footer class="post-footer"> 
@@ -200,7 +200,7 @@
      <div class="sidebar-toggle"> 
       <div class="sidebar-toggle-line-wrap"> 
        <span class="sidebar-toggle-line sidebar-toggle-line-first"></span> 
-       <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span> 
+       <span class="sidebar-toggle-line sidebar-toggle-line-miple"></span> 
        <span class="sidebar-toggle-line sidebar-toggle-line-last"></span> 
       </div> 
      </div> 
