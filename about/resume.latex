@@ -1,0 +1,209 @@
+%-------------------------
+% Resume in Latex
+% Author : Sourabh Bajaj
+% License : MIT
+%------------------------
+
+\documentclass[letterpaper,11pt]{article}
+\usepackage{CJKutf8}
+\usepackage{latexsym}
+\usepackage[empty]{fullpage}
+\usepackage{titlesec}
+\usepackage{marvosym}
+\usepackage[usenames,dvipsnames]{color}
+\usepackage{verbatim}
+\usepackage{enumitem}
+\usepackage[pdftex]{hyperref}
+\usepackage{fancyhdr}
+\usepackage{ragged2e}
+
+\usepackage{enumitem}
+\setenumerate[1]{itemsep=0pt,partopsep=0pt,parsep=\parskip,topsep=1pt}
+\setitemize[1]{itemsep=0pt,partopsep=0pt,parsep=\parskip,topsep=5pt}
+\setdescription{itemsep=0pt,partopsep=0pt,parsep=\parskip,topsep=5pt}
+
+\pagestyle{fancy}
+\fancyhf{} % clear all header and footer fields
+\fancyfoot{}
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0pt}
+
+% Adjust margins
+\addtolength{\oddsidemargin}{-0.375in}
+\addtolength{\evensidemargin}{-0.375in}
+\addtolength{\textwidth}{1in}
+\addtolength{\topmargin}{-.5in}
+\addtolength{\textheight}{1.0in}
+
+\urlstyle{same}
+
+\raggedbottom
+\raggedright
+\setlength{\tabcolsep}{0in}
+
+% Sections formatting
+\titleformat{\section}{
+  \vspace{-4pt}\scshape\raggedright\large
+}{}{0em}{}[\color{black}\titlerule \vspace{-5pt}]
+
+%-------------------------
+% Custom commands
+\newcommand{\resumeItem}[2]{
+  \item\small{
+    \textbf{#1}{: #2 \vspace{-2pt}}
+  }
+}
+
+\newcommand{\resumeSubheading}[4]{
+  \vspace{-1pt}\item
+    \begin{tabular*}{0.97\textwidth}{l@{\extracolsep{\fill}}r}
+      \textbf{#1} & #2 \\
+      \textit{\small#3} & \textit{\small #4} \\
+    \end{tabular*}\vspace{-5pt}
+}
+
+\newcommand{\resumeSubItem}[2]{\resumeItem{#1}{#2}\vspace{-4pt}}
+
+\renewcommand{\labelitemii}{$\circ$}
+
+\newcommand{\resumeSubHeadingListStart}{\begin{itemize}[leftmargin=*]}
+\newcommand{\resumeSubHeadingListEnd}{\end{itemize}}
+\newcommand{\resumeItemListStart}{\begin{itemize}[leftmargin=*]\vspace{-5pt}}
+\newcommand{\resumeItemListEnd}{\end{itemize}\vspace{0pt}}
+
+%-------------------------------------------
+%%%%%%  CV STARTS HERE  %%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\begin{document}
+\begin{CJK*}{UTF8}{gbsn}
+
+%----------HEADING-----------------
+\begin{tabular*}
+{\textwidth}{l@{\extracolsep{\fill}}l@{\extracolsep{\fill}}r}
+  \textbf{\href{https://www.github.com/mlwoo/}{\Large 吴 梦林}} \\
+  上海市闵行区吴泾镇紫星路880号 & 电话：+86-17717374729 & github：https://github.com/MlWoo \\
+  \quad Intel亚太研发中心\qquad200241 & Email： \href{mailto:menglinwoo@163.com}{menglinwoo@163.com} 
+  & 出生年月：1990.XX
+\end{tabular*}
+
+
+%-----------EDUCATION-----------------
+\vspace{-12pt}\section{\textbf{教育背景}}
+\vspace{-2pt}\begin{tabular*}
+{\textwidth}{l@{\extracolsep{\fill}}l@{\extracolsep{\fill}}r}
+  哈尔滨工业大学(HIT) & 机械工程硕士 & 09/2013 至 07/2015 \\
+  哈尔滨工业大学(HIT) & 机械设计制造及其自动化学士 & 09/2009 至 08/2013
+\end{tabular*}
+
+
+%-----------EXPERIENCE-----------------
+\vspace{-12pt}\section{\textbf{获奖荣誉}}
+\vspace{-2pt}\begin{tabular*}
+{\textwidth}{l@{\extracolsep{\fill}}r}
+Intel STO 部门奖  & 2016 \\
+Intel Design Win (Pikazo)  & 2016  \\
+中兴通讯公司 2015 级优秀新员工 & 2015 \\
+第八届全国周培源力学竞赛获\textbf{全国三等奖(黑龙江省第七名)} & 2011 \\
+国家励志奖学金（前 3\%） & 2010-2011 \\
+“飞航杯” 全国飞行器设计大赛黑龙江省赛区 “巽翼杯” 飞行器设计大赛第四名 & 2014 \\
+\end{tabular*}
+
+\vspace{-12pt}\section{\textbf{工作和研究}}
+
+\vspace{-2pt}\begin{tabular*}
+{\textwidth}{l@{\extracolsep{\fill}}l@{\extracolsep{\fill}}l@{\extracolsep{\fill}}r}
+项目：  \href{https://github.com/pytorch/pytorch}{PyTorch}深度学习框架的开发与优化 & Intel & 参与者 & 09/2017 至今
+\end{tabular*}
+
+\resumeItemListStart
+    \item\small\raggedright{
+    \textbf{Contributor}，贡献有element-wise的优化\href{https://github.com/pytorch/pytorch/pull/2764}{PR\#2764}，Conv3D的优化\href{https://github.com/pytorch/pytorch/pull/4824}{PR\#4824}，OpenMP开销阈值tuning工作 \href{https://github.com/pytorch/pytorch/pull/5584}{PR\#5584}  即将完成。贡献代码增量累计约\textbf{2.0K行}，删除累计约\textbf{1.0K行}。指出错误使用BLAS接口导致性能下降的bug:\href{https://github.com/pytorch/pytorch/issues/5047}{Issue\#5047}  和\href{https://github.com/pytorch/pytorch/issues/3525}{Issue\#3525}，且修改意见均被官方管理人员采纳。
+    }
+\resumeItemListEnd
+    
+\vspace{-4pt}\begin{tabular*}
+{\textwidth}{l@{\extracolsep{\fill}}l@{\extracolsep{\fill}}l@{\extracolsep{\fill}}r}
+项目：  \href{https://github.com/intel/pytorch}{Intel-PyTorch}深度学习框架的开发与优化 & Intel & 参与者 & 09/2017 至今
+\end{tabular*}
+
+\resumeItemListStart
+    \item\small\raggedright{
+    以较低额外计算开销实现element-wise操作的OpenMP并行化，并对OpenMP开销阈值 \href{https://github.com/zy97140/omp-benchmark-for-pytorch}{tuning}做了详细的测试和分析。
+    }
+    \item\small\raggedright{
+    优化Conv3D操作，某case的CNN部分在某典型的CPU上得到高达\textbf{8.43X}的\href{https://github.com/MlWoo/PyTorch-benchmark}{加速}。该工作可推广在Conv2D和Conv3D的变种上，且可作为新的PR贡献到官方PyTorch。
+    }
+    \item\small{
+    \href{https://github.com/intel/pytorch/tree/icc}{icc}分支主要开发人员。编写工程CMake文件，使其支持Intel编译器编译，支持AVX512源语等优化。
+    }
+\resumeItemListEnd
+
+\vspace{-4pt}\begin{tabular*}
+{\textwidth}{l@{\extracolsep{\fill}}l@{\extracolsep{\fill}}l@{\extracolsep{\fill}}r}
+项目：  \href{https://github.com/intel/torch}{Intel-Torch}深度学习框架的开发、优化和应用 & Intel & 参与者 & 05/2016 至今
+\end{tabular*}
+
+\resumeItemListStart
+    \item\small{
+    框架优化：集成MKLML深度学习加速库。从多线程OpenMP，向量化SIMD，访存等多方面优化element-wise基本操作；支持Intel编译器编译，支持AVX512源语，实现ImageNet典型topo总体性能在Intel-Torch达到\textbf{6.4X到14X}的加速。
+    }
+    \item\small{
+    框架功能：支持MKLML加速库特定layout模型的读取和保存，实现MKLML习加速库内部内存的管理。实现官方Torch模型到MKLML特定layout模型模型的自动转换。编写不同层次的测试脚本，实现自下而上的测试架构。
+    }
+    \item\small{
+    模型训练：实现ImageNet训练时数据读取和模型训练的\href{https://github.com/MlWoo/Load-Data-In-Torch-by-Buffer-Queue}{生产者消费者模型}，将读取数据时间占比\textbf{从30\%降到10-12\%}。并总结了一些在Intel Xeon \& Xeon Phi上提高训练速度的技巧。
+    }
+    \item\small{
+    成功案例：\href{https://iq.intel.com/pikazo-uses-artificial-intelligence-turn-pics-masterpieces}{Pikazo}项目被Intel定义为\textbf{Design Win}，Intel-Torch上的优化使得性能提高\textbf{7X}。 而云计算成本降低到\textbf{33\%}，让用户从原先的NVidia GPUS迁移到Intel Xeon \& Xeon Phi，且该项目在SC16, US AI Day和PRC AI Day上作为demo多次成功展示。
+    }
+    \item\small{
+    训练案例：多节点OpenNMT(http://opennmt.net)训练，修改默认的SGD为adam，激进地改变多组learning rate，寻找潜在的可能收敛的区间。对首个epoch采用某特定策略进行warmup，之后小幅度调整learning rate，使得原先近40个epoch的训练精度可在8个epoch内达到。
+    }
+\resumeItemListEnd
+
+\vspace{-4pt}\begin{tabular*}
+{\textwidth}{l@{\extracolsep{\fill}}l@{\extracolsep{\fill}}l@{\extracolsep{\fill}}r}
+项目： 基于机器视觉的 KDP 晶体表面微缺陷检测和对刀自动化技术研究 & HIT & 软件负责人 & 07/2012 至 07/2015
+\end{tabular*}
+
+\resumeItemListStart
+    \item\small{
+    使用 OpenCV对工件表面的图像采集，缺陷识别和定位，校准和关联多个运动控制系统的坐标系完成对缺陷的再定位和修复加工中自动对刀。
+    }
+    \item\small{
+    给机床添加机器视觉功能，缺陷检测中\textbf{改良了LASNR算法}高精度自动化识别工件表面缺陷，缺陷修复中使用背景前景重建帧差法对刀具进行视觉跟踪和控制。
+    }
+    \item\small{
+    提出了从检测到修复的整体自动化解决方案，设计并完成可交付的应用软件一份。使用三维建模软件设计机床部分零部件并生成图纸，组装搭建机床并搭接调试电气电路和控制程序。
+    }
+\resumeItemListEnd
+
+\vspace{-4pt}\begin{tabular*}
+{\textwidth}{l@{\extracolsep{\fill}}l@{\extracolsep{\fill}}l@{\extracolsep{\fill}}r}
+项目： 交换机二层协议的开发与维护 & 中兴通讯公司 & 参与者 & 07/2015 至 05/2016
+\end{tabular*}
+
+\resumeItemListStart
+    \item\small{
+    ZTE版EAPS协议开发与维护，新增了环路状态变化时50ms以内(EAPS要求50ms到100ms)的网络链路的自动快速切换。
+    }
+    \item\small{
+    IPTV协议的开发与维护，支持全局，VLAN，用户密码等多种IPTV用户登录与管理模式。
+    }
+\resumeItemListEnd
+
+\vspace{-12pt}\section{\textbf{技能和兴趣}}
+\resumeItemListStart
+\item{英语: CET-4: 555 CET-6: 477 CET-口语考试: C+}
+\item{编程语言: C, C++, Lua, Python, CMake, Shell, Matlab}
+\item{其他软件: Solidworks, proE, AutoCAD, CAXA}
+\item{自我评价：对新技术保持有好奇心，自学能力强，耐心坚韧}
+\item{可能关心的问题：熟悉目标检测的网络R-CNN系列，熟读《PRML》，对统计机器学习较为了解}
+\resumeItemListEnd
+
+
+%-------------------------------------------
+\end{CJK*}
+
+\end{document}
