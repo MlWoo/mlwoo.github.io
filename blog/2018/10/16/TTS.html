@@ -229,7 +229,7 @@
 			<h4 id="61"> 基本结构 </h4>
 			<p>
 			autoregressive wavenet就是序列模型建模中前馈模型的代表作。序列模型假定当前的观察到的变量是依赖于之前的变量而和之后的变量无关。假定有一组序列$\{x_0, x_1,...,x_T\}$，
-			根据序列模型的假设，观察到这组变量的概率为：$$ p(\mathbf{x}) = p(x_0)\prod_{t=1}^{T}p(x_t|x_0,..., x_{t-1}) $$这是一个完全阶的HMM模型。
+			根据序列模型的假设，观察到这组变量的概率为：$$ p(\mathbf{x}) = p(x_0)\prod_{t=1}^{T}p(x_t|x_0,..., x_{t-1}) $$ 这是一个完全阶的HMM模型。
 			通常在训练和推理过程中，序列模型必须完成之前时间点的变量结果之后才可以进行当前时间点变量的计算。这种依赖关系导致模型的计算是串行的，使得计算变得十分低效。以RNN的循环模型为例，
 			尽管在训练过程中所有时刻的可观察变量都是已知的，但是cell的hidden state却是依赖于前一个cell的hidden state，因此它的计算在时间方向上仍是串行的。<br />
 			wavenet引入了一种特殊的卷积层来表征这种依赖关系，同时摒弃了显式的hidden state，使得在训练过程中计算得以并行，这种卷积层被称之为causal layer。
@@ -274,6 +274,12 @@
 			</ul>
 			</li>
 			</ol>
+			<h3 id="7">声码器之parallel wavenet</h3>
+			<p>
+			很显然，autoregressive wavenet在做inference时由于无法事先获得前面若干sample而无法并行化的，那么这个问题该怎么解决呢。
+			假定我们有一个Fibonacci sequence，即$$ t_n =\left\{ \begin{array} & 1,\: \: \: \: \:  if\: \: n = 0 & \\ 1,\: \: \: \: \:  if\: \: n = 1 & \\ t_{n-1} + t_{n-2}, \: \: \: \: \:  if\: \: n \geq 2\end{array}\right.$$
+			训练网络时，所有时刻的sample point是已知的，使得训练时得以并行。
+			</p>
           </div> 
          </div> 
         </article> 
@@ -379,16 +385,6 @@
   <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script> 
   <script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script> 
   <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script> 
-  <script type="text/javascript">
-      (function(d, s) {
-        var j, e = d.getElementsByTagName(s)[0];
-        if (typeof LivereTower === 'function') { return; }
-        j = d.createElement(s);
-        j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
-        j.async = true;
-        e.parentNode.insertBefore(j, e);
-      })(document, 'script');
-    </script> 
   <script type="text/x-mathjax-config">
       MathJax.Hub.Config({
         tex2jax: {
@@ -406,6 +402,6 @@
         }
       });
     </script> 
-  <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=default"></script>
+  <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=default"></script>
  </body>
 </html>
